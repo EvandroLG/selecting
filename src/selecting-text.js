@@ -14,6 +14,11 @@
   var _getSelection = doc.getSelection;
   var hasSupport = _getSelection || selection;
 
+  var bind = function(element, callback, hasLib) {
+    hasLib ? element.on('mouseup', onMouseUp) :
+             element.addEventListener('mouseup', onMouseUp, false);
+  };
+
   var selectText = function(element, callback, hasLib) {
     var onMouseUp = function(e) {
       e.preventDefault();
@@ -24,12 +29,7 @@
       callback(text);
     };
 
-    if (hasLib) {
-      element.on('mouseup', onMouseUp);
-      return;
-    }
-
-    element.addEventListener('mouseup', onMouseUp, false);
+    bind(element, onMouseUp, hasLib);
   };
 
   global.SelectingText = function(element, callback) {
