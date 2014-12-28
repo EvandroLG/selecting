@@ -14,7 +14,7 @@
   var _getSelection = doc.getSelection;
   var hasSupport = _getSelection || selection;
 
-  var selectText = function(element, callback) {
+  var selectText = function(element, callback, hasLib) {
     var onMouseUp = function(e) {
       e.preventDefault();
 
@@ -24,12 +24,19 @@
       callback(text);
     };
 
+    if (hasLib) {
+      element.on('mouseup', onMouseUp);
+      return;
+    }
+
     element.addEventListener('mouseup', onMouseUp, false);
   };
 
   global.SelectingText = function(element, callback) {
     if (!hasSupport) return;
-    selectText(element, callback);
+
+    selectText(element, callback, element instanceof jQuery || 
+                                  element instanceof Zepto);
   };
   
 }(window, document));
