@@ -17,11 +17,13 @@ describe('SelectingText', function(){
   describe('action', function() {
     var element = mockElement();
 
-    it('should executes function that was passed by parameter after mouseup event was executed', function() {
-      var method = function() {};
+    it('should executes function that was passed by parameter after mouseup event was executed', function(end) {
+      var method = function() {
+        end();
+      };
 
       window.SelectingText(document.getElementById('mocha'), method);
-      // element.dispatchEvent(new Event('mouseup'));
+      document.getElementById('mocha').dispatchEvent(new Event('mouseup'));
     });
 
   });
