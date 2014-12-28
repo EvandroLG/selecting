@@ -1,3 +1,11 @@
+/*
+  * SelectingText - A client-side library that work like a Feed Reader
+  * http://github.com/evandrolg/SelectingText
+  * author: Evandro Leopoldino Goncalves <evandrolgoncalves@gmail.com>
+  * http://github.com/evandrolg
+  * License: MIT
+*/
+
 (function(global, doc) {
 
   'use strict';
