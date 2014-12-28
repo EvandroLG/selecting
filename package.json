@@ -1,0 +1,12 @@
+{
+  "name": "SelectingText",
+  "author": "EvandroLG"
+  "version": "1.0.0",
+
+  "devDependencies": {
+    "mocha": "*",
+    "mocha-phantomjs": "*",
+    "jshint": "*",
+    "chai": "*"
+  }
+}

@@ -15,3 +15,4 @@ minify:
 	echo "minified!"
 
 deploy: jshint test_js minify
+	echo "deployed!"

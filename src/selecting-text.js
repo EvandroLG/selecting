@@ -27,7 +27,7 @@
     element.addEventListener('mouseup', onMouseUp, false);
   };
 
-  global.SelectText = function(element, callback) {
+  global.SelectingText = function(element, callback) {
     if (!hasSupport) return;
     selectText(element, callback);
   };
