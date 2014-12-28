@@ -24,7 +24,7 @@
       callback(text);
     };
 
-    element.addEventListener('mouseup', onMouseUp);
+    element.addEventListener('mouseup', onMouseUp, false);
   };
 
   global.SelectText = function(element, callback) {
