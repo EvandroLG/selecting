@@ -1,5 +1,5 @@
 /*
-  * SelectingText - A client-side library that work like a Feed Reader
+  * SelectingText - Simple lib for manipulating text selection
   * http://github.com/evandrolg/SelectingText
   * author: Evandro Leopoldino Goncalves <evandrolgoncalves@gmail.com>
   * http://github.com/evandrolg
@@ -11,14 +11,14 @@
   'use strict';
 
   var selection = doc.selection;
-  var getSelection = doc.getSelection;
-  var hasSupport = getSelection || selection;
+  var _getSelection = doc.getSelection;
+  var hasSupport = _getSelection || selection;
 
   var selectText = function(element, callback) {
     var onMouseUp = function(e) {
       e.preventDefault();
 
-      var text = getSelection ? getSelection() :
+      var text = _getSelection ? doc.getSelection() :
                  selection.createRange().text;
       
       callback(text);

@@ -20,11 +20,10 @@ describe('SelectingText', function(){
     it('should executes function that was passed by parameter after mouseup event was executed', function() {
       var method = function() {};
 
-      window.SelectingText(element, method);
-      element.dispatchEvent(new Event('mouseup'));
+      window.SelectingText(document.getElementById('mocha'), method);
+      // element.dispatchEvent(new Event('mouseup'));
     });
 
-    it('should returns')
   });
 
 });
