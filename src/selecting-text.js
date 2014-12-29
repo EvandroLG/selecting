@@ -1,5 +1,5 @@
 /*
-  * SelectingText - Simple lib for manipulating text selection
+  * SelectingText - A simple solution to work with manipulating text selection
   * http://github.com/evandrolg/SelectingText
   * author: Evandro Leopoldino Goncalves <evandrolgoncalves@gmail.com>
   * http://github.com/evandrolg
@@ -33,7 +33,7 @@
   };
 
   global.SelectingText = function(element, callback) {
-    if (!hasSupport) return;
+    if (!hasSupport) { return; }
 
     var hasLib = global.jQuery && element instanceof global.jQuery ||
                  global.Zepto && element instanceof global.Zepto;

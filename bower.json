@@ -1,0 +1,22 @@
+{
+  "name": "SelectingText",
+  "version": "0.0.1",
+  "homepage": "https://github.com/EvandroLG/selectingText",
+  "authors": [
+    "evandrolg"
+  ],
+  "description": "A simple solution to work with manipulating text selection.",
+  "main": "src/selecting-text.min.js",
+  "keywords": [
+    "selecting",
+    "text",
+    "js",
+    "share",
+    "manipulation"
+  ],
+  "ignore": [
+    "**/.*",
+    "test"
+  ],
+  "license": "MIT"
+}
