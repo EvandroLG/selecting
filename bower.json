@@ -16,7 +16,8 @@
   ],
   "ignore": [
     "**/.*",
-    "test"
+    "test",
+    "*.md"
   ],
   "license": "MIT"
 }
