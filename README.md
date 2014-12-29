@@ -1,5 +1,5 @@
 # SelectingText
-A simple solution to work with manipulating text selection. 
+A simple solution to work with manipulating text selection.
 
 ## Instalation
 To install SelectingText, execute:

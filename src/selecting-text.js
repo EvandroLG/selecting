@@ -35,8 +35,10 @@
   global.SelectingText = function(element, callback) {
     if (!hasSupport) return;
 
-    selectText(element, callback, element instanceof jQuery || 
-                                  element instanceof Zepto);
+    var hasLib = global.jQuery && element instanceof global.jQuery ||
+                 global.Zepto && element instanceof global.Zepto;
+
+    selectText(element, callback, hasLib);
   };
   
 }(window, document));

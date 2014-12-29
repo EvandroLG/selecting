@@ -7,7 +7,7 @@ MOCHA_PHANTOM=./node_modules/mocha-phantomjs/bin/mocha-phantomjs
 jshint:
 	$(JSHINT) src/selecting-text.js
 
-test_js: jshint
+test_js:
 	$(MOCHA_PHANTOM) test/SpecRunner.html
 
 minify:
