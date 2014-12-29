@@ -15,8 +15,8 @@
   var hasSupport = _getSelection || selection;
 
   var bind = function(element, callback, hasLib) {
-    hasLib ? element.on('mouseup', onMouseUp) :
-             element.addEventListener('mouseup', onMouseUp, false);
+    hasLib ? element.on('mouseup', callback) :
+             element.addEventListener('mouseup', callback, false);
   };
 
   var selectText = function(element, callback, hasLib) {
