@@ -14,6 +14,17 @@
   var _getSelection = doc.getSelection;
   var hasSupport = _getSelection || selection;
 
+  // thanks @Tomalak!
+  var isNodeList = function(element) {
+    var stringRepr = Object.prototype.toString.call(element);
+
+    return typeof element === 'object' &&
+           /^\[object (HTMLCollection|NodeList|Object)\]$/.test(stringRepr) &&
+           element.hasOwnProperty('length') &&
+           (element.length === 0 || (typeof element[0] === "object" && 
+           element[0].nodeType > 0));
+  };
+
   function debounce(callback, wait) {
     var timeout;
 
@@ -30,19 +41,24 @@
     };
   };
 
-  var isNodeList = function(element) {
-    var stringRepr = Object.prototype.toString.call(nodes);
-
-    return typeof nodes === 'object' &&
-           /^\[object (HTMLCollection|NodeList|Object)\]$/.test(stringRepr) &&
-           nodes.hasOwnProperty('length') &&
-           (nodes.length === 0 || (typeof nodes[0] === "object" && 
-           nodes[0].nodeType > 0));
-  };
-
   var bind = function(element, callback, hasLib) {
-    hasLib ? element.on('mouseup', debounce(callback, 200)) :
-             element.addEventListener('mouseup', debounce(callback, 200), false);
+    if (hasLib) {
+      element.on('mouseup', debounce(callback, 200));
+      return;
+    }
+
+    var bindDOM = function(el) {
+      el.addEventListener('mouseup', debounce(callback, 200), false);
+    };
+
+    if (!isNodeList(element)) {
+      bindDOM(element);
+      return;
+    }
+
+    [].forEach.call(element, function(item) {
+      bindDOM(item);
+    });
   };
 
   var selectText = function(element, callback, hasLib) {
