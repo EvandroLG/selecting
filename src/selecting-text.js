@@ -28,7 +28,7 @@
       clearTimeout(timeout);
       timeout = setTimeout(later, wait);
     };
-};
+  };
 
   var bind = function(element, callback, hasLib) {
     hasLib ? element.on('mouseup', debounce(callback, 200)) :
