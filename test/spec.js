@@ -22,8 +22,8 @@ describe('SelectingText', function(){
         end();
       };
 
-      window.SelectingText(document.getElementById('mocha'), method);
-      document.getElementById('mocha').dispatchEvent(new Event('mouseup'));
+      window.SelectingText(document.getElementById('container-test'), method);
+      document.getElementById('container-test').dispatchEvent(new Event('mouseup'));
     });
 
   });
