@@ -21,11 +21,11 @@
     return typeof element === 'object' &&
            /^\[object (HTMLCollection|NodeList|Object)\]$/.test(stringRepr) &&
            element.hasOwnProperty('length') &&
-           (element.length === 0 || (typeof element[0] === "object" && 
+           (element.length === 0 || (typeof element[0] === 'object' && 
            element[0].nodeType > 0));
   };
 
-  function debounce(callback, wait) {
+  var debounce = function(callback, wait) {
     var timeout;
 
     return function() {
@@ -43,12 +43,12 @@
 
   var bind = function(element, callback, hasLib) {
     if (hasLib) {
-      element.on('mouseup', debounce(callback, 200));
+      element.on('mouseup', debounce(callback, 150));
       return;
     }
 
     var bindDOM = function(el) {
-      el.addEventListener('mouseup', debounce(callback, 200), false);
+      el.addEventListener('mouseup', debounce(callback, 150), false);
     };
 
     if (!isNodeList(element)) {

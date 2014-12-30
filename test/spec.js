@@ -1,13 +1,5 @@
 describe('SelectingText', function(){
 
-  var mockElement = function() {
-    var container = document.createElement('div');
-    container.id = 'container';
-    container.innerHTML = '<p>Hello JavaScript World!</p>';
-
-    return container;
-  };
-
   describe('instance', function() {
     it('should exists SelectingText as a function', function(){
       expect(window.SelectingText).be.an('function');
@@ -15,7 +7,22 @@ describe('SelectingText', function(){
   });
 
   describe('action', function() {
-    var element = mockElement();
+    var mockElement = function() {
+      var container = document.createElement('div');
+      container.className = 'container';
+      container.innerHTML = '<p>Hello JavaScript World!</p>';
+
+      return container;
+    };
+
+    mockNodeList = function() {
+      var firstElement = mockElement();
+      var secondElement = mockElement();
+      var container = document.getElementById('container-test');
+      
+      container.appendChild(firstElement);
+      container.appendChild(secondElement);
+    };
 
     var verifyLibrary = function(lib, end) {
       window[lib] = function(value) {
@@ -36,8 +43,22 @@ describe('SelectingText', function(){
         end();
       };
 
+      var element = mockElement();
+
       window.SelectingText(element, method);
       element.dispatchEvent(new Event('mouseup'));
+    });
+
+    it('should attach event to all objects that are in the nodelist', function() {
+      var method = function() {
+        end();
+      };
+
+      mockNodeList();
+      var elements = document.querySelectorAll('.container');
+
+      window.SelectingText(elements, method);
+      elements[0].dispatchEvent(new Event('mouseup'));
     });
 
     it('should executed on function when jQuery object is passed by parameter', function(end) {
@@ -47,7 +68,6 @@ describe('SelectingText', function(){
     it('should executed on function when Zepto object is passed by parameter', function(end) {
       verifyLibrary('Zepto', end)
     });
-
   });
 
 });
