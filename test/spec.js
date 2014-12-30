@@ -22,8 +22,8 @@ describe('SelectingText', function(){
         end();
       };
 
-      window.SelectingText(document.getElementById('container-test'), method);
-      document.getElementById('container-test').dispatchEvent(new Event('mouseup'));
+      window.SelectingText(element, method);
+      element.dispatchEvent(new Event('mouseup'));
     });
 
   });
