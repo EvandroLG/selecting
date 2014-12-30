@@ -25,7 +25,13 @@
   <body>
     <div id="wrapper">
       <input type="text" id="selected-text">
-      <div id="container">
+      <div class="container">
+        <p>Lorem ipsum dolor sit amet, ea tantas primis propriae sed, doctus accommodare in nec, per te purto omnis vituperatoribus. Ad malorum gloriatur duo. Nisl scripserit usu et, doming interpretaris ea nam. Partiendo instructior pri in, quo verear reprehendunt no, vim iracundia sadipscing an. Facilisi persecuti mei ne. Eripuit consetetur neglegentur mea ut, platonem imperdiet nec id.</p>
+        <p>Copiosae facilisis at eam, voluptaria omittantur vim an. Mei efficiendi omittantur eu, duo eu nobis mucius, sententiae scribentur in nam. Ornatus vivendo nam et. Alia facilisi oportere quo no.</p>
+        <p>Mei eleifend gubergren consetetur at, ea mea nonumes consequuntur. Mea at velit detracto, usu persius efficiantur no. Gubergren mnesarchum mea ex. Quidam option civibus ei sea.</p>
+      </div>
+
+      <div class="container">
         <p>Lorem ipsum dolor sit amet, ea tantas primis propriae sed, doctus accommodare in nec, per te purto omnis vituperatoribus. Ad malorum gloriatur duo. Nisl scripserit usu et, doming interpretaris ea nam. Partiendo instructior pri in, quo verear reprehendunt no, vim iracundia sadipscing an. Facilisi persecuti mei ne. Eripuit consetetur neglegentur mea ut, platonem imperdiet nec id.</p>
         <p>Copiosae facilisis at eam, voluptaria omittantur vim an. Mei efficiendi omittantur eu, duo eu nobis mucius, sententiae scribentur in nam. Ornatus vivendo nam et. Alia facilisi oportere quo no.</p>
         <p>Mei eleifend gubergren consetetur at, ea mea nonumes consequuntur. Mea at velit detracto, usu persius efficiantur no. Gubergren mnesarchum mea ex. Quidam option civibus ei sea.</p>
@@ -36,10 +42,10 @@
       document.addEventListener('DOMContentLoaded', function() {
 
         var $ = function(value) {
-          return document.getElementById(value);
+          return document.querySelectorAll(value);
         };
 
-        window.SelectingText($('container'), function(selector) {
+        window.SelectingText($('.container')[0], function(selector) {
           $('selected-text').value = selector;
         });
 
