@@ -14,9 +14,25 @@
   var _getSelection = doc.getSelection;
   var hasSupport = _getSelection || selection;
 
+  function debounce(callback, wait) {
+    var timeout;
+
+    return function() {
+      var context = this, args = arguments;
+
+      var later = function() {
+        timeout = null;
+        callback.apply(context, args);
+      };
+
+      clearTimeout(timeout);
+      timeout = setTimeout(later, wait);
+    };
+};
+
   var bind = function(element, callback, hasLib) {
-    hasLib ? element.on('mouseup', callback) :
-             element.addEventListener('mouseup', callback, false);
+    hasLib ? element.on('mouseup', debounce(callback, 200)) :
+             element.addEventListener('mouseup', debounce(callback, 200), false);
   };
 
   var selectText = function(element, callback, hasLib) {
