@@ -14,4 +14,4 @@ Or simply pick up the file from src directory.
 You just need call the SelectingText function and pass two parameters: an DOM element or jQuery element and a callback. This callback will return a Selection object and with it you can get the selected text.
 
 # Example
-Click here to see a simple example.
+[Click here](http://evandrolg.github.io/SelectingText) to see a simple example.
