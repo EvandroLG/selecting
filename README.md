@@ -1,5 +1,5 @@
 # SelectingText
-A simple solution to work with manipulating text selection.
+A library that allows you to access the text selected by the user.
 
 ## Instalation
 To install SelectingText, execute:
