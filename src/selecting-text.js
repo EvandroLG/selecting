@@ -6,6 +6,16 @@
   * License: MIT
 */
 
+(function (name, global, doc, definition) {
+  
+  if (typeof module != 'undefined' && module.exports) module.exports = definition();
+  else if (typeof define == 'function' && define.amd) define(definition);
+  else global[name] = definition();
+
+}('SelectingText', window, document, function() {
+
+}));
+
 (function(global, doc) {
 
   'use strict';
