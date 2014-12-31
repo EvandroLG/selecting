@@ -1,8 +1,8 @@
-describe('SelectingText', function(){
+describe('selecting', function(){
 
   describe('instance', function() {
-    it('should exists SelectingText as a function', function(){
-      expect(window.SelectingText).be.an('function');
+    it('should exists selecting as a function', function(){
+      expect(window.selecting).be.an('function');
     });
   });
 
@@ -35,7 +35,7 @@ describe('SelectingText', function(){
         }
       };
 
-      window.SelectingText(new window[lib]('element'), function() {});
+      window.selecting(new window[lib]('element'), function() {});
     };
 
     it('should executes function that was passed by parameter after mouseup event was executed', function(end) {
@@ -45,7 +45,7 @@ describe('SelectingText', function(){
 
       var element = mockElement();
 
-      window.SelectingText(element, method);
+      window.selecting(element, method);
       element.dispatchEvent(new Event('mouseup'));
     });
 
@@ -57,7 +57,7 @@ describe('SelectingText', function(){
       mockNodeList();
       var elements = document.querySelectorAll('.container');
 
-      window.SelectingText(elements, method);
+      window.selecting(elements, method);
       elements[0].dispatchEvent(new Event('mouseup'));
     });
 

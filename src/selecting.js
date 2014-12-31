@@ -74,7 +74,7 @@
     bind(element, onMouseUp, hasLib);
   };
 
-  global.SelectingText = function(element, callback) {
+  global.selecting = function(element, callback) {
     if (!hasSupport) { return; }
 
     var hasLib = global.jQuery && element instanceof global.jQuery ||

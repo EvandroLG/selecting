@@ -1,4 +1,4 @@
-# SelectingText
+# selecting
 A library that allows you to access the text selected by the user.
 
 ## Instalation
@@ -18,19 +18,19 @@ Or simply pick up the file from src directory.
 * Opera
 
 ## How to use?
-SelectiongText doesn't depend on jQuery, Zepto or any other library to work. You need just to include it at the end of your HTML code:
+Selecting doesn't depend on jQuery, Zepto or any other library to work. You need just to include it at the end of your HTML code:
 
 ```html
   <script src="selecting-text.js"></script>
 ```
 
-Then you can call <code>window.SelectingText</code> function passing two parameters: an DOM element (jQuery object or NodeList) to listen to and a callback function that receive a [Selector](https://developer.mozilla.org/en-US/docs/Web/API/Window.getSelection) object by parameter. For example:
+Then you can call <code>window.selecting</code> function passing two parameters: an DOM element (jQuery object or NodeList) to listen to and a callback function that receive a [Selector](https://developer.mozilla.org/en-US/docs/Web/API/Window.getSelection) object by parameter. For example:
 
 ```js
-  window.SelectingText($('.container'), function(selector) {
+  window.selecting($('.container'), function(selector) {
     ...
   });
 ```
 
 # Example
-[See a simple example](http://evandrolg.github.io/SelectingText).
+[See a simple example](http://evandrolg.github.io/selecting).
