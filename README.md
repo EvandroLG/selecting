@@ -24,7 +24,7 @@ Selecting doesn't depend on jQuery, Zepto or any other library to work. You need
   <script src="selecting.js"></script>
 ```
 
-Then you can call <code>window.selecting</code> function passing two parameters: an DOM element (jQuery object or NodeList) to listen to and a callback function that receive a [Selector](https://developer.mozilla.org/en-US/docs/Web/API/Window.getSelection) object by parameter. For example:
+Then you can call <code>window.selecting</code> function passing two parameters: an DOM element (jQuery object or NodeList) to listen to and a callback function that receive a [Selection](https://developer.mozilla.org/en-US/docs/Web/API/Window.getSelection) object by parameter. For example:
 
 ```js
   window.selecting($('.container'), function(selector) {
