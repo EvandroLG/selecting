@@ -18,13 +18,13 @@ Or simply pick up the file from src directory.
 * Opera
 
 ## How to use?
-SelectiongText doesn't depend on jQuery, Zepto or any other library to work. You need just include in end of your HTML code it:
+SelectiongText doesn't depend on jQuery, Zepto or any other library to work. You need just to include it at the end of your HTML code:
 
 ```html
   <script src="selecting-text.js"></script>
 ```
 
-Then you can call in your code the <code>window.SelectingText</code> function passing two parameters: an DOM element (jQuery object or NodeList) that you would like to listen and a callback that will receive a [Selector](https://developer.mozilla.org/en-US/docs/Web/API/Window.getSelection) objectby parameter.
+Then you can call <code>window.SelectingText</code> function passing two parameters: an DOM element (jQuery object or NodeList) to listen to and a callback function that receive a [Selector](https://developer.mozilla.org/en-US/docs/Web/API/Window.getSelection) object by parameter. For example:
 
 ```js
   window.SelectingText($('.container'), function(selector) {
