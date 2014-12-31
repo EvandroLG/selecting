@@ -1,5 +1,5 @@
 /*
-  * SelectingText - A simple solution to work with manipulating text selection
+  * SelectingText - A library that allows you to access the text selected by the user
   * http://github.com/evandrolg/SelectingText
   * author: Evandro Leopoldino Goncalves <evandrolgoncalves@gmail.com>
   * http://github.com/evandrolg
