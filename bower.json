@@ -1,11 +1,11 @@
 {
   "name": "selecting",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "homepage": "https://github.com/EvandroLG/selecting",
   "authors": [
     "evandrolg"
   ],
-  "description": "A simple solution to work with manipulating text selection.",
+  "description": "A library that allows you to access the text selected by the user",
   "main": "src/selecting.min.js",
   "keywords": [
     "selecting",
