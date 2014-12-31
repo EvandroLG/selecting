@@ -8,14 +8,14 @@ To install SelectingText, execute:
   bower install selecting
 ```
 
+Or simply pick up the file from src directory.
+
 ## Supported Browsers
 * Google Chrome
 * Firefox
 * Internet Explorer 9.0+
 * Safari
 * Opera
-
-Or simply pick up the file from src directory.
 
 ## How to use?
 SelectiongText doesn't depend on jQuery, Zepto or any other library to work. You need just include in end of your HTML code it:
