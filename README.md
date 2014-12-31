@@ -24,7 +24,7 @@ SelectiongText doesn't depend on jQuery, Zepto or any other library to work. You
   <script src="selecting-text.js"></script>
 ```
 
-Then you can call in your code the <code>window.SelectingText</code> function passing two parameters: an DOM element (jQuery object or NodeList) that you would like to listen and a callback. 
+Then you can call in your code the <code>window.SelectingText</code> function passing two parameters: an DOM element (jQuery object or NodeList) that you would like to listen and a callback that will receive a [Selector](https://developer.mozilla.org/en-US/docs/Web/API/Window.getSelection) objectby parameter.
 
 ```js
   window.SelectingText($('.container'), function(selector) {
