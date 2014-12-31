@@ -8,10 +8,29 @@ To install SelectingText, execute:
   bower install selecting
 ```
 
+## Supported Browsers
+* Google Chrome
+* Firefox
+* Internet Explorer 9.0+
+* Safari
+* Opera
+
 Or simply pick up the file from src directory.
 
-## How it works?
-You just need call the SelectingText function and pass two parameters: an DOM element or jQuery element and a callback. This callback will return a Selection object and with it you can get the selected text.
+## How to use?
+SelectiongText doesn't depend on jQuery, Zepto or any other library to work. You need just include in end of your HTML code it:
+
+```html
+  <script src="selecting-text.js"></script>
+```
+
+Then you can call in your code the <code>window.SelectingText</code> function passing two parameters: an DOM element (jQuery object or NodeList) that you would like to listen and a callback. 
+
+```js
+  window.SelectingText($('.container'), function(selector) {
+    ...
+  });
+```
 
 # Example
-[Click here](http://evandrolg.github.io/SelectingText) to see a simple example.
+[See a simple example](http://evandrolg.github.io/SelectingText).
