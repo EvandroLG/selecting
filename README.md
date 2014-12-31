@@ -21,7 +21,7 @@ Or simply pick up the file from src directory.
 Selecting doesn't depend on jQuery, Zepto or any other library to work. You need just to include it at the end of your HTML code:
 
 ```html
-  <script src="selecting-text.js"></script>
+  <script src="selecting.js"></script>
 ```
 
 Then you can call <code>window.selecting</code> function passing two parameters: an DOM element (jQuery object or NodeList) to listen to and a callback function that receive a [Selector](https://developer.mozilla.org/en-US/docs/Web/API/Window.getSelection) object by parameter. For example:
