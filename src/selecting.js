@@ -21,7 +21,7 @@
     return typeof element === 'object' &&
            /^\[object (HTMLCollection|NodeList|Object)\]$/.test(stringRepr) &&
            element.hasOwnProperty('length') &&
-           (element.length === 0 || (typeof element[0] === 'object' && 
+           (element.length === 0 || (typeof element[0] === 'object' &&
            element[0].nodeType > 0));
   };
 
@@ -67,7 +67,7 @@
 
       var text = _getSelection ? doc.getSelection() :
                  selection.createRange().text;
-      
+
       callback(text);
     };
 
@@ -82,5 +82,5 @@
 
     selectText(element, callback, hasLib);
   };
-  
+
 }(window, document));
