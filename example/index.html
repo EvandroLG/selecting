@@ -39,8 +39,6 @@
     </div>
     <script src="../src/selecting.min.js"></script>
     <script>
-      document.addEventListener('DOMContentLoaded', function() {
-
         var $ = function(value) {
           return document.querySelectorAll(value);
         };
@@ -48,8 +46,6 @@
         window.selecting($('.container'), function(selector) {
           $('#selected-text')[0].value = selector;
         });
-
-      }, false);
     </script>
   </body>
 </html>
