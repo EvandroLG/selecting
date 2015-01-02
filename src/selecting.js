@@ -73,21 +73,21 @@
   };
 
   // source http://stackoverflow.com/a/5379408
-  function getText() {
+  var getText = function() {
     var text = '';
-    if (window.getSelection) {
-      text = window.getSelection().toString();
+
+    if (_getSelection) {
+      text = doc.getSelection().toString();
     } else if (document.selection && document.selection.type !== 'Control') {
       text = document.selection.createRange().text;
     }
+
     return text;
-  }
+  };
 
   var selectText = function(element, callback, hasLib) {
     var onMouseUp = function() {
-
       var text = getText();
-
       callback(text);
     };
 
@@ -101,7 +101,6 @@
     var intervalCheckingForText;
 
     var selectionStart = function () {
-
       element.removeEventListener('touchend', selectionEnd, false);
       element.addEventListener('touchend', selectionEnd, false);
 
