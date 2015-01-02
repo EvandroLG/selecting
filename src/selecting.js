@@ -43,13 +43,15 @@
 
   var bind = function(element, callback, hasLib) {
     if (hasLib) {
-      if ('ontouchstart' in window) {
+      if ('ontouchstart' in global) {
         element.each(function () {
           checkForSelections(this, callback);
         });
-      } else {
-        element.on('mouseup', debounce(callback, 150));
-      }
+
+        return;
+      } 
+
+      element.on('mouseup', debounce(callback, 150));
 
       return;
     }
@@ -57,9 +59,10 @@
     var bindDOM = function(el) {
       if ('ontouchstart' in global) {
         checkForSelections(el, callback);
-      } else {
-        el.addEventListener('mouseup', debounce(callback, 150), false);
-      }
+        return;
+      } 
+
+      el.addEventListener('mouseup', debounce(callback, 150), false);
     };
 
     if (!isNodeList(element)) {
@@ -113,9 +116,7 @@
 
         if (text !== '') {
           callback(text);
-
           selectionEnd();
-
           checkForChanges(callback);
         }
       }, 100);
