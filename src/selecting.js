@@ -55,7 +55,7 @@
     }
 
     var bindDOM = function(el) {
-      if ('ontouchstart' in window) {
+      if ('ontouchstart' in global) {
         checkForSelections(el, callback);
       } else {
         el.addEventListener('mouseup', debounce(callback, 150), false);
@@ -72,19 +72,6 @@
     });
   };
 
-  // source http://stackoverflow.com/a/5379408
-  var getText = function() {
-    var text = '';
-
-    if (_getSelection) {
-      text = doc.getSelection().toString();
-    } else if (document.selection && document.selection.type !== 'Control') {
-      text = document.selection.createRange().text;
-    }
-
-    return text;
-  };
-
   var selectText = function(element, callback, hasLib) {
     var onMouseUp = function() {
       var text = getText();
@@ -92,6 +79,19 @@
     };
 
     bind(element, onMouseUp, hasLib);
+  };
+
+  // source http://stackoverflow.com/a/5379408
+  var getText = function() {
+    var text = '';
+
+    if (_getSelection) {
+      text = global.getSelection().toString();
+    } else if (doc.selection && doc.selection.type !== 'Control') {
+      text = doc.selection.createRange().text;
+    }
+
+    return text;
   };
 
   /*
@@ -129,16 +129,10 @@
     element.addEventListener('touchstart', selectionStart, false);
   };
 
-  /*
-    Once this function is called, it'll check for changes in the
-    current selection string with a setInterval
-    Once the selected string is equal '', we stop the setInterval
-  */
   var checkForChanges = function (callback) {
-    var intervalCheckingForText;
     var currentText = getText();
 
-    intervalCheckingForText = setInterval(function () {
+    var intervalCheckingForText = setInterval(function () {
       if (getText() !== currentText) {
         callback(getText());
         currentText = getText();
