@@ -19,7 +19,7 @@ describe('selecting', function(){
       var firstElement = mockElement();
       var secondElement = mockElement();
       var container = document.getElementById('container-test');
-      
+
       container.appendChild(firstElement);
       container.appendChild(secondElement);
     };
