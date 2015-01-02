@@ -41,26 +41,13 @@
     };
   };
 
-  var bind = function(element, callback, hasLib) {
-    if (hasLib) {
-      if ('ontouchstart' in global) {
-        element.each(function () {
-          checkForSelections(this, callback);
-        });
-
-        return;
-      } 
-
-      element.on('mouseup', debounce(callback, 150));
-
-      return;
-    }
+  var bind = function(element, callback) {
 
     var bindDOM = function(el) {
       if ('ontouchstart' in global) {
         checkForSelections(el, callback);
         return;
-      } 
+      }
 
       el.addEventListener('mouseup', debounce(callback, 150), false);
     };
@@ -75,13 +62,13 @@
     });
   };
 
-  var selectText = function(element, callback, hasLib) {
+  var selectText = function(element, callback) {
     var onMouseUp = function() {
       var text = getText();
       callback(text);
     };
 
-    bind(element, onMouseUp, hasLib);
+    bind(element, onMouseUp);
   };
 
   // source http://stackoverflow.com/a/5379408
@@ -147,10 +134,7 @@
   global.selecting = function(element, callback) {
     if (!hasSupport) { return; }
 
-    var hasLib = global.jQuery && element instanceof global.jQuery ||
-                 global.Zepto && element instanceof global.Zepto;
-
-    selectText(element, callback, hasLib);
+    selectText(element, callback);
   };
 
 }(window, document));

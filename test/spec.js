@@ -60,14 +60,6 @@ describe('selecting', function(){
       window.selecting(elements, method);
       elements[0].dispatchEvent(new Event('mouseup'));
     });
-
-    it('should executed on function when jQuery object is passed by parameter', function(end) {
-      verifyLibrary('jQuery', end)
-    });
-
-    it('should executed on function when Zepto object is passed by parameter', function(end) {
-      verifyLibrary('Zepto', end)
-    });
   });
 
 });
