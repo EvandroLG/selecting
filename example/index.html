@@ -10,16 +10,17 @@
       }
 
       #wrapper {
-        width: 1024px;
+        max-width: 1024px;
         margin: 0 auto;
         padding-top: 30px;
       }
 
       #selected-text {
-        width: 200px;
+        width: 100%;
         height: 30px;
         padding: 5px;
         border: 1px solid #CCC;
+        box-sizing: border-box;
       }
     </style>
   </head>
@@ -38,7 +39,7 @@
         <p>Mei eleifend gubergren consetetur at, ea mea nonumes consequuntur. Mea at velit detracto, usu persius efficiantur no. Gubergren mnesarchum mea ex. Quidam option civibus ei sea.</p>
       </div>
     </div>
-    <script src="../src/selecting.min.js"></script>
+    <script src="../src/selecting.js"></script>
     <script>
         var $ = function(value) {
           return document.querySelectorAll(value);
