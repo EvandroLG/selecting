@@ -21,7 +21,7 @@
     return typeof element === 'object' &&
            /^\[object (HTMLCollection|NodeList|Object)\]$/.test(stringRepr) &&
            element.hasOwnProperty('length') &&
-           (element.length === 0 || (typeof element[0] === 'object' && 
+           (element.length === 0 || (typeof element[0] === 'object' &&
            element[0].nodeType > 0));
   };
 
@@ -43,12 +43,23 @@
 
   var bind = function(element, callback, hasLib) {
     if (hasLib) {
-      element.on('mouseup', debounce(callback, 150));
+      if ('ontouchstart' in window) {
+        element.each(function () {
+          checkForSelections(this, callback);
+        });
+      } else {
+        element.on('mouseup', debounce(callback, 150));
+      }
+
       return;
     }
 
     var bindDOM = function(el) {
-      el.addEventListener('mouseup', debounce(callback, 150), false);
+      if ('ontouchstart' in window) {
+        checkForSelections(el, callback);
+      } else {
+        el.addEventListener('mouseup', debounce(callback, 150), false);
+      }
     };
 
     if (!isNodeList(element)) {
@@ -61,17 +72,82 @@
     });
   };
 
-  var selectText = function(element, callback, hasLib) {
-    var onMouseUp = function(e) {
-      e.preventDefault();
+  // source http://stackoverflow.com/a/5379408
+  function getText() {
+    var text = '';
+    if (window.getSelection) {
+      text = window.getSelection().toString();
+    } else if (document.selection && document.selection.type !== 'Control') {
+      text = document.selection.createRange().text;
+    }
+    return text;
+  }
 
-      var text = _getSelection ? doc.getSelection() :
-                 selection.createRange().text;
-      
+  var selectText = function(element, callback, hasLib) {
+    var onMouseUp = function() {
+
+      var text = getText();
+
       callback(text);
     };
 
     bind(element, onMouseUp, hasLib);
+  };
+
+  /*
+    This function detect text selection during a long-press in the screen
+  */
+  var checkForSelections = function (element, callback) {
+    var intervalCheckingForText;
+
+    var selectionStart = function () {
+
+      element.removeEventListener('touchend', selectionEnd, false);
+      element.addEventListener('touchend', selectionEnd, false);
+
+      if (intervalCheckingForText) {
+        clearInterval(intervalCheckingForText);
+      }
+
+      intervalCheckingForText = setInterval(function () {
+        var text = getText();
+
+        if (text !== '') {
+          callback(text);
+
+          selectionEnd();
+
+          checkForChanges(callback);
+        }
+      }, 100);
+    };
+
+    var selectionEnd = function () {
+      clearInterval(intervalCheckingForText);
+      element.removeEventListener('touchend', selectionEnd, false);
+    };
+
+    element.addEventListener('touchstart', selectionStart, false);
+  };
+
+  /*
+    Once this function is called, it'll check for changes in the
+    current selection string with a setInterval
+    Once the selected string is equal '', we stop the setInterval
+  */
+  var checkForChanges = function (callback) {
+    var intervalCheckingForText;
+    var currentText = getText();
+
+    intervalCheckingForText = setInterval(function () {
+      if (getText() !== currentText) {
+        callback(getText());
+        currentText = getText();
+
+      } else if (getText() === '') {
+        clearInterval(intervalCheckingForText);
+      }
+    }, 100);
   };
 
   global.selecting = function(element, callback) {
@@ -82,5 +158,5 @@
 
     selectText(element, callback, hasLib);
   };
-  
+
 }(window, document));
