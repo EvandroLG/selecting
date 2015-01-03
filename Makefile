@@ -5,13 +5,13 @@ MOCHA_PHANTOM=./node_modules/mocha-phantomjs/bin/mocha-phantomjs
 .SILENT:
 
 jshint:
-	$(JSHINT) src/selecting-text.js
+	$(JSHINT) src/selecting.js
 
 test_js:
 	$(MOCHA_PHANTOM) test/SpecRunner.html
 
 minify:
-	$(UGLIFY) src/selecting-text.js --mangle --output src/selecting-text.min.js
+	$(UGLIFY) src/selecting.js --mangle --output src/selecting.min.js
 	echo "minified!"
 
 deploy: jshint test_js minify

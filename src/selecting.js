@@ -54,7 +54,7 @@
       var callback = this.callback;
       var getText = this.getText;
 
-      this[ this.isTouch ? 'bindTouch' : 'bindMouseUp' ](function(e) {  
+      this[ this.isTouch ? 'bindTouch' : 'bindMouseUp' ](function() {  
         callback(getText());
       });
     },
@@ -121,7 +121,7 @@
       var getText = this.getText;
 
       if (this.hasLib) {
-        element.each(function () {
+        this.element.each(function () {
           checkForSelections(this, getText, callback);
         });
 
@@ -133,7 +133,7 @@
       };
 
       if (!isNodeList(this.element)) {
-        bindDOM(element);
+        bindDOM(this.element);
         return;
       }
 
