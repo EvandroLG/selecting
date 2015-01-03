@@ -41,109 +41,6 @@
     };
   };
 
-  // var bind = function(element, callback, hasLib) {
-  //   if (hasLib) {
-  //     if ('ontouchstart' in global) {
-  //       element.each(function () {
-  //         checkForSelections(this, callback);
-  //       });
-
-  //       return;
-  //     } 
-
-  //     element.on('mouseup', debounce(callback, 150));
-
-  //     return;
-  //   }
-
-  //   var bindDOM = function(el) {
-  //     if ('ontouchstart' in global) {
-  //       checkForSelections(el, callback);
-  //       return;
-  //     } 
-
-  //     el.addEventListener('mouseup', debounce(callback, 150), false);
-  //   };
-
-  //   if (!isNodeList(element)) {
-  //     bindDOM(element);
-  //     return;
-  //   }
-
-  //   [].forEach.call(element, function(item) {
-  //     bindDOM(item);
-  //   });
-  // };
-
-  // var selectText = function(element, callback, hasLib) {
-  //   var onMouseUp = function() {
-  //     var text = getText();
-  //     callback(text);
-  //   };
-
-  //   bind(element, onMouseUp, hasLib);
-  // };
-
-  // // source http://stackoverflow.com/a/5379408
-  // var getText = function() {
-  //   var text = '';
-
-  //   if (_getSelection) {
-  //     text = global.getSelection().toString();
-  //   } else if (doc.selection && doc.selection.type !== 'Control') {
-  //     text = doc.selection.createRange().text;
-  //   }
-
-  //   return text;
-  // };
-
-  // /*
-  //   This function detect text selection during a long-press in the screen
-  // */
-  // var checkForSelections = function (element, callback) {
-  //   var intervalCheckingForText;
-
-  //   var selectionStart = function () {
-  //     element.removeEventListener('touchend', selectionEnd, false);
-  //     element.addEventListener('touchend', selectionEnd, false);
-
-  //     if (intervalCheckingForText) {
-  //       clearInterval(intervalCheckingForText);
-  //     }
-
-  //     intervalCheckingForText = setInterval(function () {
-  //       var text = getText();
-
-  //       if (text !== '') {
-  //         callback(text);
-  //         selectionEnd();
-  //         checkForChanges(callback);
-  //       }
-  //     }, 100);
-  //   };
-
-  //   var selectionEnd = function () {
-  //     clearInterval(intervalCheckingForText);
-  //     element.removeEventListener('touchend', selectionEnd, false);
-  //   };
-
-  //   element.addEventListener('touchstart', selectionStart, false);
-  // };
-
-  // var checkForChanges = function (callback) {
-  //   var currentText = getText();
-
-  //   var intervalCheckingForText = setInterval(function () {
-  //     if (getText() !== currentText) {
-  //       callback(getText());
-  //       currentText = getText();
-
-  //     } else if (getText() === '') {
-  //       clearInterval(intervalCheckingForText);
-  //     }
-  //   }, 100);
-  // };
-
   var Selecting = function(element, callback) {
     this.element = element;
     this.callback = callback || function() {};
@@ -155,73 +52,102 @@
   Selecting.prototype = {
     events: function() {
       var callback = this.callback;
+      var getText = this.getText;
 
-      this[ this.isTouch ? 'bindTouch' : 'bindMouseUp' ](function(e) {
-        e.preventDefault();
-
-        var text = _getSelection ? doc.getSelection() :
-                   selection.createRange().text;
-        
-        callback(text);
+      this[ this.isTouch ? 'bindTouch' : 'bindMouseUp' ](function(e) {  
+        callback(getText());
       });
     },
 
+    // source http://stackoverflow.com/a/5379408
+    getText: function() {
+      var text = '';
+
+      if (_getSelection) {
+        text = global.getSelection().toString();
+      } else if (doc.selection && doc.selection.type !== 'Control') {
+        text = doc.selection.createRange().text;
+      }
+
+      return text;
+    },
+
+    checkForSelections: function (element, getText, callback) {
+      var intervalCheckingForText;
+
+      var checkForChanges = function (callback) {
+        var currentText = getText();
+
+        var intervalCheckingForText = setInterval(function () {
+          if (getText() !== currentText) {
+            callback(getText());
+            currentText = getText();
+
+          } else if (getText() === '') {
+            clearInterval(intervalCheckingForText);
+          }
+        }, 100);
+      };
+
+      var selectionStart = function () {
+        element.removeEventListener('touchend', selectionEnd, false);
+        element.addEventListener('touchend', selectionEnd, false);
+
+        if (intervalCheckingForText) {
+          clearInterval(intervalCheckingForText);
+        }
+
+        intervalCheckingForText = setInterval(function () {
+          var text = getText();
+
+          if (text !== '') {
+            callback(text);
+            selectionEnd();
+            checkForChanges(callback);
+          }
+        }, 100);
+      };
+
+      var selectionEnd = function () {
+        clearInterval(intervalCheckingForText);
+        element.removeEventListener('touchend', selectionEnd, false);
+      };
+
+      element.addEventListener('touchstart', selectionStart, false);
+    },
+
     bindTouch: function(callback) {
+      var checkForSelections = this.checkForSelections;
+      var getText = this.getText;
+
       if (this.hasLib) {
-        this.element.on('touchend', debounce(callback, 150), false);
-        // element.each(function () {
-        //   checkForSelections(this, callback);
-        // });
+        element.each(function () {
+          checkForSelections(this, getText, callback);
+        });
 
         return;
       }
 
       var bindDOM = function(el) {
-        el.addEventListener('touchend', debounce(callback, 150), false);
+        checkForSelections(el, getText, callback);
       };
 
       if (!isNodeList(this.element)) {
-        this.bindDOM(this.element);
+        bindDOM(element);
         return;
       }
 
       [].forEach.call(this.element, function(item) {
         bindDOM(item);
       });
-// if (hasLib) {
-  //     if ('ontouchstart' in global) {
-  //       element.each(function () {
-  //         checkForSelections(this, callback);
-  //       });
-
-  //       return;
-  //     } 
-
-  //     element.on('mouseup', debounce(callback, 150));
-
-  //     return;
-  //   }
-
-  //   var bindDOM = function(el) {
-  //     if ('ontouchstart' in global) {
-  //       checkForSelections(el, callback);
-  //       return;
-  //     } 
-
-  //     el.addEventListener('mouseup', debounce(callback, 150), false);
-  //   };
-
-  //   if (!isNodeList(element)) {
-  //     bindDOM(element);
-  //     return;
-  //   }
-
-  //   [].forEach.call(element, function(item) {
-  //     bindDOM(item);
-  //   });
     },
 
     bindMouseUp: function(callback) {
+      if (this.hasLib) {
+        this.element.on('mouseup', debounce(callback, 150));
+        return;
+      }
+
       var bindDOM = function(el) {
         el.addEventListener('mouseup', debounce(callback, 150), false);
       };
@@ -240,7 +166,6 @@
   global.selecting = function(element, callback) {
     if (!hasSupport) { return; }
     new Selecting(element, callback).events();
-    // selectText(element, callback, hasLib);
   };
 
 }(window, document));
