@@ -166,8 +166,58 @@
       });
     },
 
-    bindTouch: function() {
+    bindTouch: function(callback) {
+      if (this.hasLib) {
+        element.each(function () {
+          checkForSelections(this, callback);
+        });
 
+        return;
+      }
+
+      var bindDOM = function(el) {
+        el.addEventListener('touchend', debounce(callback, 150), false);
+      };
+
+      if (!isNodeList(element)) {
+        this.bindDOM(element);
+        return;
+      }
+
+      [].forEach.call(this.element, function(item) {
+        bindDOM(item);
+      });
+// if (hasLib) {
+  //     if ('ontouchstart' in global) {
+  //       element.each(function () {
+  //         checkForSelections(this, callback);
+  //       });
+
+  //       return;
+  //     } 
+
+  //     element.on('mouseup', debounce(callback, 150));
+
+  //     return;
+  //   }
+
+  //   var bindDOM = function(el) {
+  //     if ('ontouchstart' in global) {
+  //       checkForSelections(el, callback);
+  //       return;
+  //     } 
+
+  //     el.addEventListener('mouseup', debounce(callback, 150), false);
+  //   };
+
+  //   if (!isNodeList(element)) {
+  //     bindDOM(element);
+  //     return;
+  //   }
+
+  //   [].forEach.call(element, function(item) {
+  //     bindDOM(item);
+  //   });
     },
 
     bindMouseUp: function(callback) {
