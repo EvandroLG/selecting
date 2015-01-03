@@ -168,9 +168,10 @@
 
     bindTouch: function(callback) {
       if (this.hasLib) {
-        element.each(function () {
-          checkForSelections(this, callback);
-        });
+        this.element.on('touchend', debounce(callback, 150), false);
+        // element.each(function () {
+        //   checkForSelections(this, callback);
+        // });
 
         return;
       }
@@ -179,8 +180,8 @@
         el.addEventListener('touchend', debounce(callback, 150), false);
       };
 
-      if (!isNodeList(element)) {
-        this.bindDOM(element);
+      if (!isNodeList(this.element)) {
+        this.bindDOM(this.element);
         return;
       }
 

@@ -39,8 +39,8 @@
         <p>Mei eleifend gubergren consetetur at, ea mea nonumes consequuntur. Mea at velit detracto, usu persius efficiantur no. Gubergren mnesarchum mea ex. Quidam option civibus ei sea.</p>
       </div>
     </div>
-    <script src="../src/selecting.js"></script>
-    <script>
+    <!--script src="../src/selecting.js"></script-->
+    <!--script>
 
         var $ = function(value) {
           return document.querySelectorAll(value);
@@ -50,6 +50,16 @@
           $('#selected-text')[0].value = selector;
         });
 
+    </script-->
+    <script>
+      var $ = function(value) {
+        return document.querySelectorAll(value);
+      };
+
+      $('.container')[0].addEventListener('mouseup', function() {
+        var selector = document.getSelection().getRangeAt(0);
+        $('#selected-text')[0].value = selector;
+      }, false);
     </script>
   </body>
 </html>
