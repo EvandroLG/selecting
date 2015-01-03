@@ -41,116 +41,131 @@
     };
   };
 
-  var bind = function(element, callback, hasLib) {
-    if (hasLib) {
-      if ('ontouchstart' in global) {
-        element.each(function () {
-          checkForSelections(this, callback);
+  var Selecting = function(element, callback) {
+    this.element = element;
+    this.callback = callback || function() {};
+    this.isTouch = 'ontouchstart' in global;
+    this.hasLib = global.jQuery && element instanceof global.jQuery ||
+                 global.Zepto && element instanceof global.Zepto;
+  };
+
+  Selecting.prototype = {
+    events: function() {
+      var callback = this.callback;
+      var getText = this.getText;
+
+      this[ this.isTouch ? 'bindTouch' : 'bindMouseUp' ](function() {  
+        callback(getText());
+      });
+    },
+
+    // source http://stackoverflow.com/a/5379408
+    getText: function() {
+      var text = '';
+
+      if (_getSelection) {
+        text = global.getSelection().toString();
+      } else if (doc.selection && doc.selection.type !== 'Control') {
+        text = doc.selection.createRange().text;
+      }
+
+      return text;
+    },
+
+    checkForSelections: function (element, getText, callback) {
+      var intervalCheckingForText;
+
+      var checkForChanges = function (callback) {
+        var currentText = getText();
+
+        var intervalCheckingForText = setInterval(function () {
+          if (getText() !== currentText) {
+            callback(getText());
+            currentText = getText();
+
+          } else if (getText() === '') {
+            clearInterval(intervalCheckingForText);
+          }
+        }, 100);
+      };
+
+      var selectionStart = function () {
+        element.removeEventListener('touchend', selectionEnd, false);
+        element.addEventListener('touchend', selectionEnd, false);
+
+        if (intervalCheckingForText) {
+          clearInterval(intervalCheckingForText);
+        }
+
+        intervalCheckingForText = setInterval(function () {
+          var text = getText();
+
+          if (text !== '') {
+            callback(text);
+            selectionEnd();
+            checkForChanges(callback);
+          }
+        }, 100);
+      };
+
+      var selectionEnd = function () {
+        clearInterval(intervalCheckingForText);
+        element.removeEventListener('touchend', selectionEnd, false);
+      };
+
+      element.addEventListener('touchstart', selectionStart, false);
+    },
+
+    bindTouch: function(callback) {
+      var checkForSelections = this.checkForSelections;
+      var getText = this.getText;
+
+      if (this.hasLib) {
+        this.element.each(function () {
+          checkForSelections(this, getText, callback);
         });
 
         return;
-      } 
+      }
 
-      element.on('mouseup', debounce(callback, 150));
+      var bindDOM = function(el) {
+        checkForSelections(el, getText, callback);
+      };
 
-      return;
-    }
-
-    var bindDOM = function(el) {
-      if ('ontouchstart' in global) {
-        checkForSelections(el, callback);
+      if (!isNodeList(this.element)) {
+        bindDOM(this.element);
         return;
-      } 
-
-      el.addEventListener('mouseup', debounce(callback, 150), false);
-    };
-
-    if (!isNodeList(element)) {
-      bindDOM(element);
-      return;
-    }
-
-    [].forEach.call(element, function(item) {
-      bindDOM(item);
-    });
-  };
-
-  var selectText = function(element, callback, hasLib) {
-    var onMouseUp = function() {
-      var text = getText();
-      callback(text);
-    };
-
-    bind(element, onMouseUp, hasLib);
-  };
-
-  // source http://stackoverflow.com/a/5379408
-  var getText = function() {
-    var text = '';
-
-    if (_getSelection) {
-      text = global.getSelection().toString();
-    } else if (doc.selection && doc.selection.type !== 'Control') {
-      text = doc.selection.createRange().text;
-    }
-
-    return text;
-  };
-
-  /*
-    This function detect text selection during a long-press in the screen
-  */
-  var checkForSelections = function (element, callback) {
-    var intervalCheckingForText;
-
-    var selectionStart = function () {
-      element.removeEventListener('touchend', selectionEnd, false);
-      element.addEventListener('touchend', selectionEnd, false);
-
-      if (intervalCheckingForText) {
-        clearInterval(intervalCheckingForText);
       }
 
-      intervalCheckingForText = setInterval(function () {
-        var text = getText();
+      [].forEach.call(this.element, function(item) {
+        bindDOM(item);
+      });
+    },
 
-        if (text !== '') {
-          callback(text);
-          selectionEnd();
-          checkForChanges(callback);
-        }
-      }, 100);
-    };
-
-    var selectionEnd = function () {
-      clearInterval(intervalCheckingForText);
-      element.removeEventListener('touchend', selectionEnd, false);
-    };
-
-    element.addEventListener('touchstart', selectionStart, false);
-  };
-
-  var checkForChanges = function (callback) {
-    var currentText = getText();
-
-    var intervalCheckingForText = setInterval(function () {
-      if (getText() !== currentText) {
-        callback(getText());
-        currentText = getText();
-
-      } else if (getText() === '') {
-        clearInterval(intervalCheckingForText);
+    bindMouseUp: function(callback) {
+      if (this.hasLib) {
+        this.element.on('mouseup', debounce(callback, 150));
+        return;
       }
-    }, 100);
+
+      var bindDOM = function(el) {
+        el.addEventListener('mouseup', debounce(callback, 150), false);
+      };
+
+      if (!isNodeList(this.element)) {
+        bindDOM(this.element);
+        return;
+      }
+
+      [].forEach.call(this.element, function(item) {
+        bindDOM(item);
+      });
+    }
   };
 
   global.selecting = function(element, callback) {
     if (!hasSupport) { return; }
-
-    var hasLib = global.jQuery && element instanceof global.jQuery ||
-                 global.Zepto && element instanceof global.Zepto;
-
-    selectText(element, callback, hasLib);
+    new Selecting(element, callback).events();
   };
 
 }(window, document));
