@@ -19,10 +19,10 @@
     var stringRepr = Object.prototype.toString.call(element);
 
     return typeof element === 'object' &&
-           /^\[object (HTMLCollection|NodeList|Object)\]$/.test(stringRepr) &&
-           element.hasOwnProperty('length') &&
-           (element.length === 0 || (typeof element[0] === 'object' &&
-           element[0].nodeType > 0));
+          /^\[object (HTMLCollection|NodeList|Object)\]$/.test(stringRepr) &&
+          element.hasOwnProperty('length') &&
+          (element.length === 0 || (typeof element[0] === 'object' &&
+          element[0].nodeType > 0));
   };
 
   var debounce = function(callback, wait) {
@@ -46,7 +46,7 @@
     this.callback = callback || function() {};
     this.isTouch = 'ontouchstart' in global;
     this.hasLib = global.jQuery && element instanceof global.jQuery ||
-                 global.Zepto && element instanceof global.Zepto;
+                global.Zepto && element instanceof global.Zepto;
   };
 
   Selecting.prototype = {

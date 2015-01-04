@@ -8,6 +8,7 @@
     "mocha": "^2.1.x",
     "mocha-phantomjs": "^3.5.x",
     "jshint": "^2.5.x",
-    "chai": "^1.10.x"
+    "chai": "^1.10.x",
+    "lintspaces-cli": "0.0.4"
   }
 }
