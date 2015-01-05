@@ -1,51 +1,34 @@
-<!doctype html>
+<!DOCTYPE html>
+
 <html>
   <head>
-    <title>Example - SelectingText</title>
-    <style>
-      * {
-        font: 14px Arial, Verdana, sans-serif;
-        color: #000;
-      }
-
-      #wrapper {
-        width: 1024px;
-        margin: 0 auto;
-        padding-top: 30px;
-      }
-
-      #selected-text {
-        width: 200px;
-        height: 30px;
-        padding: 5px;
-        border: 1px solid #CCC;
-      }
-    </style>
+    <meta charset="UTF-8">
+    <title>Selecting</title>
+    <link href="etc/main.css" rel="stylesheet">
   </head>
   <body>
-    <div id="wrapper">
-      <input type="text" id="selected-text">
-      <div id="container">
-        <p>Lorem ipsum dolor sit amet, ea tantas primis propriae sed, doctus accommodare in nec, per te purto omnis vituperatoribus. Ad malorum gloriatur duo. Nisl scripserit usu et, doming interpretaris ea nam. Partiendo instructior pri in, quo verear reprehendunt no, vim iracundia sadipscing an. Facilisi persecuti mei ne. Eripuit consetetur neglegentur mea ut, platonem imperdiet nec id.</p>
-        <p>Copiosae facilisis at eam, voluptaria omittantur vim an. Mei efficiendi omittantur eu, duo eu nobis mucius, sententiae scribentur in nam. Ornatus vivendo nam et. Alia facilisi oportere quo no.</p>
-        <p>Mei eleifend gubergren consetetur at, ea mea nonumes consequuntur. Mea at velit detracto, usu persius efficiantur no. Gubergren mnesarchum mea ex. Quidam option civibus ei sea.</p>
-      </div>
-    </div>
-    <script>
-      (function(e,t){"use strict";var n=t.selection;var o=t.getSelection;var r=o||n;var a=function(e,t,n){n?e.on("mouseup",t):e.addEventListener("mouseup",t,false)};var i=function(e,r,i){var u=function(e){e.preventDefault();var a=o?t.getSelection():n.createRange().text;r(a)};a(e,u,i)};e.SelectingText=function(t,n){if(!r){return}var o=e.jQuery&&t instanceof e.jQuery||e.Zepto&&t instanceof e.Zepto;i(t,n,o)}})(window,document);
-    </script>
-    <script>
-      document.addEventListener('DOMContentLoaded', function() {
+    <header class="wrapper">
+      <h1 class="header padded">
+        <img src="etc/selecting.svg" class="header-logo">
+        <span class="header-text">Selecting</span>
+      </h1>
 
-        var $ = function(value) {
-          return document.getElementById(value);
-        };
+      <p class="padded">
+        A library that allows you to access the text selected by the user.
+      </p>
+    </header>
 
-        window.SelectingText($('container'), function(selector) {
-          $('selected-text').value = selector;
-        });
+    <main class="wrapper">
+      <blockquote id="dummy" cite="http://la.wikisource.org/wiki/De_finibus_bonorum_et_malorum/Liber_Primus">
+        Non eram nescius, Brute, cum, quae summis ingeniis exquisitaque doctrina philosophi Graeco sermone tractavissent, ea Latinis litteris mandaremus, fore ut hic noster labor in varias reprehensiones incurreret. nam quibusdam, et iis quidem non admodum indoctis, totum hoc displicet philosophari. quidam autem non tam id reprehendunt, si remissius agatur, sed tantum studium tamque multam operam ponendam in eo non arbitrantur. erunt etiam, et ii quidem eruditi Graecis litteris, contemnentes Latinas, qui se dicant in Graecis legendis operam malle consumere. postremo aliquos futuros suspicor, qui me ad alias litteras vocent, genus hoc scribendi, etsi sit elegans, personae tamen et dignitatis esse negent.
+      </blockquote>
 
-      }, false);
-    </script>
+      <p id="selected" class="padded">
+        Select any words from the text above to see it in action.
+      </p>
+    </main>
+
+    <script src="src/selecting.js"></script>
+    <script src="etc/main.js"></script>
   </body>
 </html>

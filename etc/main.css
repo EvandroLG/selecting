@@ -1,0 +1,47 @@
+blockquote, p {
+  margin: 1em 0;
+  text-align: justify;
+}
+
+html, input {
+  color: rgb(51, 51, 51);
+  font-family: 'Trebuchet MS', sans-serif;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+blockquote {
+  background-color: rgb(216, 216, 216);
+  border-radius: 2px;
+  padding: 1em;
+}
+
+.header {
+  color: rgb(74, 74, 74);
+  font-family: Arial, serif;
+  font-size: 1.2em;
+  font-weight: normal;
+  overflow: hidden;
+  text-transform: uppercase;
+}
+
+.header-logo, .header-text {
+  display: block;
+  float: left;
+  height: 30px;
+}
+
+.header-text {
+  line-height: 32px;
+  margin-left: 10px;
+}
+
+.padded {
+  padding: 0 1em;
+}
+
+.wrapper {
+  margin: 2em auto;
+  width: 100%;
+  max-width: 728px;
+}

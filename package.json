@@ -1,0 +1,14 @@
+{
+  "name": "selecting",
+  "author": "EvandroLG",
+  "version": "0.0.7",
+
+  "devDependencies": {
+    "uglify-js": "^2.4.16",
+    "mocha": "^2.1.x",
+    "mocha-phantomjs": "^3.5.x",
+    "jshint": "^2.5.x",
+    "chai": "^1.10.x",
+    "lintspaces-cli": "0.0.4"
+  }
+}
