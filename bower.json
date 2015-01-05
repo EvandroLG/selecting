@@ -1,0 +1,23 @@
+{
+  "name": "selecting",
+  "version": "0.0.7",
+  "homepage": "https://github.com/EvandroLG/selecting",
+  "authors": [
+    "evandrolg"
+  ],
+  "description": "A library that allows you to access the text selected by the user",
+  "main": "src/selecting.min.js",
+  "keywords": [
+    "selecting",
+    "text",
+    "js",
+    "share",
+    "manipulation"
+  ],
+  "ignore": [
+    "**/.*",
+    "test",
+    "*.md"
+  ],
+  "license": "MIT"
+}
