@@ -1,0 +1,17 @@
+* {
+  font: 14px Arial, Verdana, sans-serif;
+  color: #000;
+}
+
+#wrapper {
+  width: 1024px;
+  margin: 0 auto;
+  padding-top: 30px;
+}
+
+#selected-text {
+  width: 200px;
+  height: 30px;
+  padding: 5px;
+  border: 1px solid #CCC;
+}
