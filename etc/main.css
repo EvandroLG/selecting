@@ -1,6 +1,7 @@
-* {
-  font: 14px Arial, Verdana, sans-serif;
-  color: #000;
+html, input {
+  color: rgb(51, 51, 51);
+  font-family: 'Trebuchet MS', sans-serif;
+  font-size: 14px;
 }
 
 #wrapper {
