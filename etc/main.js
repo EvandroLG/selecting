@@ -1,11 +1,15 @@
-document.addEventListener('DOMContentLoaded', function() {
-
+!function() {
   var $ = function(value) {
     return document.getElementById(value);
   };
 
-  window.SelectingText($('container'), function(selector) {
-    $('selected-text').value = selector;
-  });
+  var initialize = function() {
+    selecting($('dummy'), selected);
+  };
 
-}, false);
+  var selected = function(text) {
+    $('selected').innerHTML = 'Selected text: <strong>' + text + '</strong>';
+  };
+
+  document.addEventListener('DOMContentLoaded', initialize);
+}();
