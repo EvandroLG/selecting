@@ -29,18 +29,6 @@
     </main>
 
     <script src="src/selecting.js"></script>
-    <script>
-      document.addEventListener('DOMContentLoaded', function() {
-
-        var $ = function(value) {
-          return document.getElementById(value);
-        };
-
-        window.SelectingText($('container'), function(selector) {
-          $('selected-text').value = selector;
-        });
-
-      }, false);
-    </script>
+    <script src="etc/main.js"></script>
   </body>
 </html>
