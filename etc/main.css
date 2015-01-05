@@ -1,18 +1,47 @@
+blockquote, p {
+  margin: 1em 0;
+  text-align: justify;
+}
+
 html, input {
   color: rgb(51, 51, 51);
   font-family: 'Trebuchet MS', sans-serif;
   font-size: 14px;
+  line-height: 1.5;
 }
 
-#wrapper {
-  width: 1024px;
-  margin: 0 auto;
-  padding-top: 30px;
+blockquote {
+  background-color: rgb(216, 216, 216);
+  border-radius: 2px;
+  padding: 1em;
 }
 
-#selected-text {
-  width: 200px;
+.header {
+  color: rgb(74, 74, 74);
+  font-family: Arial, serif;
+  font-size: 1.2em;
+  font-weight: normal;
+  overflow: hidden;
+  text-transform: uppercase;
+}
+
+.header-logo, .header-text {
+  display: block;
+  float: left;
   height: 30px;
-  padding: 5px;
-  border: 1px solid #CCC;
+}
+
+.header-text {
+  line-height: 32px;
+  margin-left: 10px;
+}
+
+.padded {
+  padding: 0 1em;
+}
+
+.wrapper {
+  margin: 2em auto;
+  width: 100%;
+  max-width: 728px;
 }
