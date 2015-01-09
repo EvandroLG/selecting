@@ -54,8 +54,11 @@
       var callback = this.callback;
       var getText = this.getText;
 
-      this[ this.isTouch ? 'bindTouch' : 'bindMouseUp' ](function() {  
-        callback(getText());
+      this[ this.isTouch ? 'bindTouch' : 'bindMouseUp' ](function(event) {  
+        callback({
+          'text': getText(),
+          'event': event
+        });
       });
     },
 
