@@ -16,6 +16,8 @@ Or simply pick up the file from src directory.
 * Internet Explorer 9.0+
 * Safari
 * Opera
+* iOS
+* Android
 
 ## How to use?
 Selecting doesn't depend on jQuery, Zepto or any other library to work. You need just to include it at the end of your HTML code:
