@@ -55,8 +55,14 @@
       var getText = this.getText;
 
       this[ this.isTouch ? 'bindTouch' : 'bindMouseUp' ](function(event) {  
+        var text = getText(),
+            // Transform 'a   a' into 'a a'
+            removeSpaces = text.replace(/\s+(?=\s)/g,''),
+            wordCount = (text !== '')? removeSpaces.split(' ').length : 0;
+
         callback({
-          'text': getText(),
+          'text': text,
+          'wordCount': wordCount,
           'event': event
         });
       });

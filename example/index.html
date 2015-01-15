@@ -38,6 +38,10 @@
         <p>Copiosae facilisis at eam, voluptaria omittantur vim an. Mei efficiendi omittantur eu, duo eu nobis mucius, sententiae scribentur in nam. Ornatus vivendo nam et. Alia facilisi oportere quo no.</p>
         <p>Mei eleifend gubergren consetetur at, ea mea nonumes consequuntur. Mea at velit detracto, usu persius efficiantur no. Gubergren mnesarchum mea ex. Quidam option civibus ei sea.</p>
       </div>
+
+      <div class="selection-meta">
+        <span class="word-count"></span>
+      </div>
     </div>
     <script src="../src/selecting.js"></script>
     <script>
@@ -47,6 +51,7 @@
 
         window.selecting($('.container'), function(selector) {
           $('#selected-text')[0].value = selector.text;
+          $('.word-count')[0].innerHTML = selector.wordCount;
         });
     </script>
   </body>
