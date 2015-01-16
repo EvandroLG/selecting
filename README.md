@@ -30,7 +30,9 @@ Then you can call <code>window.selecting</code> function passing two parameters:
 
 ```js
   window.selecting($('.container'), function(selector) {
-    ...
+    // Properties
+    selector.text; // The selected text
+    selector.wordCount; // The number of words selected
   });
 ```
 
