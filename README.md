@@ -38,3 +38,8 @@ Then you can call <code>window.selecting</code> function passing two parameters:
 
 # Example
 [See a simple example](http://evandrolg.github.io/selecting).
+
+## Contribuitors
+- [@evandrolg](http://www.github.com/evandrolg)
+- [@felquis](http://www.github.com/felquis)
+- [@gibatronic](http://www.github.com/gibatronic)
