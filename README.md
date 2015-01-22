@@ -36,7 +36,7 @@ Then you can call <code>window.selecting</code> function passing two parameters:
   });
 ```
 
-# Example
+## Example
 [See a simple example](http://evandrolg.github.io/selecting).
 
 ## Contributors
