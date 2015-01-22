@@ -40,6 +40,6 @@ Then you can call <code>window.selecting</code> function passing two parameters:
 [See a simple example](http://evandrolg.github.io/selecting).
 
 ## Contribuitors
-- [@evandrolg](http://www.github.com/evandrolg)
-- [@felquis](http://www.github.com/felquis)
-- [@gibatronic](http://www.github.com/gibatronic)
+|[![@evandrolg](https://avatars3.githubusercontent.com/u/444054?v=3&amp;s=96)](https://github.com/evandrolg)|[![@felquis](https://avatars2.githubusercontent.com/u/736728?v=3&s=96)](https://github.com/felquis)|[![@gibatronic](https://avatars0.githubusercontent.com/u/819643?v=2&amp;s=96)](https://github.com/gibatronic)|
+|:---:|:---:|:---:|
+|[@evandrolg](http://www.github.com/evandrolg)|[@felquis](http://www.github.com/felquis)|[@gibatronic](http://www.github.com/gibatronic)|
