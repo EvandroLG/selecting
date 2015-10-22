@@ -2,8 +2,13 @@
 A library that allows you to access the text selected by the user.
 
 ## Instalation
-To install SelectingText, execute:
+To install Selecting, execute:
 
+```shell
+  npm install selecting
+```
+
+Or Bower too:
 ```shell
   bower install selecting
 ```
